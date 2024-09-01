@@ -8,10 +8,26 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+<style>
+    .app_wrap {
+        margin: 50px 0;
+    }
+    .table {
+        max-width:800px;
+    }
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+        vertical-align: middle;
+    }
+    .table>tbody>tr>td:last-child, .table tr>th:last-child {
+        text-align:center;
+    }
+</style>
 <body>
 
+<div class="app_wrap">
 <div class="container">
     <h2>PHP - Simple To Do List App</h2>
+    <br><br>
     <div class="row">
         <div class="col-sm-4">
             <input type="text" name="task" id="task" class="form-control">
@@ -23,6 +39,7 @@
             <a class="btn btn-info" id="show_all_tasks">Show All</a>
         </div>
     </div> 
+    <br>
     <div class="row">
         <div class="col-md-12">    
             <table class="table" id="task_table">
@@ -61,6 +78,7 @@
         </div>
     </div>
 </div>
+</div>
 
 
 <div id="deleteModal" class="modal fade" role="dialog">
@@ -69,13 +87,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Confirm Delete</h4>
       </div>
       <div class="modal-body">
         <p>Are you sure to delete this task?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="delId" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-success" id="delId" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
       </div>
     </div>
 
@@ -90,6 +109,8 @@
             data: { name: $('#task').val(), _token: "{{ csrf_token() }}" },
             success: function(result) {
                 if (result.status == 200) {
+                    $('#task').val('')
+
                     if(result) {
                         $('#no_task').empty()
                         $('#task_table tbody').append(`
