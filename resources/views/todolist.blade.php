@@ -38,10 +38,10 @@
         <div class="col-sm-3">
             <a class="btn btn-info" id="show_all_tasks">Show All</a>
         </div>
-    </div> 
+    </div>
     <br>
     <div class="row">
-        <div class="col-md-12">    
+        <div class="col-md-12">
             <table class="table" id="task_table">
                 <thead>
                     <tr>
@@ -193,12 +193,12 @@
                                 </td>
                             </tr>`
                         }
-                        
+
 
                         $('#task_table tbody').append(html)
                     })
                 } else {
-                    
+
                     $('#task_table tbody').append(`
                         <tr id="no_task">
                             <td colspan="4" class="text-center">No tasks found!</td>
@@ -209,8 +209,8 @@
         })
     })
 
-    
-    $('.delBtn').click(function() {
+
+    $(document).on('click', '.delBtn',function() {
         // alert($(this).data('id'))
         $('#delId').attr('onclick', 'deleteTask('+$(this).data('id')+')')
     })
@@ -244,7 +244,7 @@
         })
     }
 
-    
+
 </script>
 </body>
 </html>
